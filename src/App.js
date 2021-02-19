@@ -1,25 +1,36 @@
-import logo from './logo.svg';
+import React from 'react';
+import SideNav from './Side-Nav/SideNav';
+
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  constructor(props){
+    super(props);
+
+    this.state = {
+      width: '0%'
+    }
+
+    this.openSidenav = this.openSidenav.bind(this);
+    this.closeNav = this.closeNav.bind(this);
+  }
+
+  openSidenav(){
+    this.setState({width: '25%'})
+  }
+
+  closeNav(){
+    this.setState({width: '0%'})
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <button onClick={this.openSidenav}>Open</button>
+        <SideNav width={this.state.width} closeNav={this.closeNav}/>
+      </div>
+    );
+  }
 }
 
 export default App;
